@@ -59,12 +59,12 @@
 
     <distributionManagement>
         <repository>
-            <id>OSGi Releases</id>
-            <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+            <id>Paremus Releases</id>
+            <url>https://nexus2.paremus.com/content/repositories/releases/</url>
         </repository>
         <snapshotRepository>
-            <id>OSGi Snapshots</id>
-            <url>https://oss.sonatype.org/content/repositories/osgi-snapshots/</url>
+            <id>Paremus Snapshots</id>
+            <url>https://nexus2.paremus.com/content/repositories/snapshots/</url>
         </snapshotRepository>
     </distributionManagement>
 
@@ -78,6 +78,7 @@
     <modules>
         <module>quickstart</module>
         <module>microservice</module>
+        <module>fabric</module>
     </modules>
 
     <repositories>
