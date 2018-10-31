@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>fabric</artifactId>
+        <groupId>com.paremus.example.enroute.microservice</groupId>
+        <version>1.0.0</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>microservice-index</artifactId>
+    <packaging>pom</packaging>
+
+    <dependencies>
+       <dependency>
+            <groupId>org.osgi.enroute.examples.microservice</groupId>
+            <artifactId>dao-impl</artifactId>
+            <version>${examples.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.osgi.enroute.examples.microservice</groupId>
+            <artifactId>rest-service</artifactId>
+            <version>${examples.version}</version>
+        </dependency>
+
+        <!-- Paremus Http Publisher to publish app endpoint -->
+        <dependency>
+            <groupId>com.paremus.tools</groupId>
+            <artifactId>com.paremus.http.publish</artifactId>
+        </dependency>
+
+        <!-- include impl-index -->
+        <dependency>
+            <groupId>org.osgi.enroute</groupId>
+            <artifactId>impl-index</artifactId>
+            <type>pom</type>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.eclipse.platform</groupId>
+                    <artifactId>org.eclipse.osgi</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
+        <!-- include osgi-api index -->
+        <dependency>
+            <groupId>org.osgi.enroute</groupId>
+            <artifactId>osgi-api</artifactId>
+            <type>pom</type>
+        </dependency>
+
+        <!-- include debug-bundles index -->
+        <dependency>
+            <groupId>org.osgi.enroute</groupId>
+            <artifactId>debug-bundles</artifactId>
+            <type>pom</type>
+        </dependency>
+
+        <!-- impls not in other indexes -->
+        <dependency>
+            <groupId>org.apache.johnzon</groupId>
+            <artifactId>johnzon-core</artifactId>
+            <version>1.1.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
+            <version>1.4.196</version>
+            <scope>runtime</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.felix</groupId>
+            <artifactId>org.apache.felix.log</artifactId>
+            <version>1.2.0</version>
+            <scope>runtime</scope>
+        </dependency>
+
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>biz.aQute.bnd</groupId>
+                <artifactId>bnd-indexer-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
+</project>

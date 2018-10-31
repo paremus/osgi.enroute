@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<system xmlns="http://schema.paremus.com/sf/1.2"
+        version="1.0.0"
+        name="microservice-jdbc-demo"
+        boundary="fabric"
+        repopath="">
+    <description>Enroute Microservice Example (JDBC)</description>
+    <admin group="demo"/>
+    <system.part name="microservice-jdbc">
+
+        <launch.properties>
+            <!-- prevent Jetty from binding a port until its config is loaded -->
+            <property name="org.osgi.service.http.port" value="-1"/>
+            <!-- infinite log with debug enabled -->
+            <property name="org.apache.felix.log.maxSize" value="-1"/>
+            <property name="org.apache.felix.log.storeDebug" value="true"/>
+        </launch.properties>
+
+        <config pid="org.apache.felix.http">
+            <property name="org.osgi.service.http.port"
+                      value="${port#any}"/>
+        </config>
+
+        <config pid="org.apache.aries.tx.control.jdbc.xa"
+                factory="true">
+            <property name="name"
+                      value="microservice.database"/>
+            <property name="osgi.jdbc.driver.class"
+                      value="org.h2.Driver"/>
+            <property name="url"
+                      value="jdbc:h2:./data/database"/>
+        </config>
+
+        <config pid="org.osgi.enroute.examples.microservice.dao.impl.PersonDaoImpl">
+            <property name="provider.target"
+                      value="(name=microservice.database)"/>
+        </config>
+
+        <config pid="org.osgi.enroute.examples.microservice.dao.impl.AddressDaoImpl">
+            <property name="provider.target"
+                      value="(name=microservice.database)"/>
+        </config>
+
+    </system.part>
+</system>

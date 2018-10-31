@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>org.osgi.enroute.examples</groupId>
+        <artifactId>examples</artifactId>
+        <version>0.0.1</version>
+    </parent>
+
+    <groupId>com.paremus.example.enroute.microservice</groupId>
+    <artifactId>fabric</artifactId>
+    <packaging>pom</packaging>
+    <version>1.0.0</version>
+
+    <description>Paremus Service Fabric deployment for OSGi enRoute Microservice example</description>
+
+    <modules>
+        <module>microservice-index</module>
+        <module>microservice-jdbc-system</module>
+    </modules>
+
+    <profiles>
+        <profile>
+            <id>CI_Build</id>
+            <properties>
+                <local.index.policy>FORBIDDEN</local.index.policy>
+            </properties>
+        </profile>
+    </profiles>
+
+    <properties>
+        <examples.version>0.0.1</examples.version>
+        <paremus-system-plugin.version>1.0.4</paremus-system-plugin.version>
+        <local.index.policy>REQUIRED</local.index.policy>
+    </properties>
+
+    <pluginRepositories>
+        <pluginRepository>
+            <id>Paremus Releases</id>
+            <url>https://nexus2.paremus.com/content/repositories/releases/</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </pluginRepository>
+        <pluginRepository>
+            <id>Paremus Snapshots</id>
+            <url>https://nexus2.paremus.com/content/repositories/snapshots/</url>
+            <releases>
+                <enabled>false</enabled>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </pluginRepository>
+    </pluginRepositories>
+
+    <repositories>
+        <repository>
+            <id>Paremus Releases</id>
+            <url>https://nexus2.paremus.com/content/repositories/releases/</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </repository>
+        <repository>
+            <id>Paremus Snapshots</id>
+            <url>https://nexus2.paremus.com/content/repositories/snapshots/</url>
+            <releases>
+                <enabled>false</enabled>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </repository>
+    </repositories>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>com.paremus.tools</groupId>
+                <artifactId>com.paremus.http.publish</artifactId>
+                <version>1.0.6</version>
+            </dependency>
+            <dependency>
+                <groupId>com.paremus.fabric</groupId>
+                <artifactId>paremus-system-plugin</artifactId>
+                <version>1.0.2</version>
+            </dependency>
+            <dependency>
+                <groupId>com.paremus.packager</groupId>
+                <artifactId>_index</artifactId>
+                <version>3.2.12</version>
+            </dependency>
+            <dependency>
+                <groupId>org.bndtools</groupId>
+                <artifactId>org.bndtools.service</artifactId>
+                <version>1.1.6</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>biz.aQute.bnd</groupId>
+                    <artifactId>bnd-indexer-maven-plugin</artifactId>
+                    <version>${bnd.version}</version>
+                    <configuration>
+                        <localURLs>${local.index.policy}</localURLs>
+                        <attach>false</attach>
+                    </configuration>
+                    <executions>
+                        <execution>
+                            <id>index</id>
+                            <configuration>
+                                <attach>true</attach>
+                            </configuration>
+                            <goals>
+                                <goal>index</goal>
+                            </goals>
+                        </execution>
+                        <execution>
+                            <id>test-index</id>
+                            <goals>
+                                <goal>index</goal>
+                            </goals>
+                            <configuration>
+                                <outputFile>${project.build.directory}/test-index.xml</outputFile>
+                                <scopes>
+                                    <scope>test</scope>
+                                </scopes>
+                            </configuration>
+                        </execution>
+                    </executions>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+
+    </build>
+</project>
