@@ -18,7 +18,8 @@ import org.osgi.service.http.whiteboard.propertytypes.HttpWhiteboardResource;
 import org.osgi.service.jaxrs.whiteboard.propertytypes.JSONRequired;
 import org.osgi.service.jaxrs.whiteboard.propertytypes.JaxrsResource;
 
-@Component(service=RestComponentImpl.class)
+@Component(service=RestComponentImpl.class,
+	property = {"com.paremus.app.endpoint=microservice/index.html"})
 @JaxrsResource
 @Path("person")
 @Produces(MediaType.APPLICATION_JSON)
