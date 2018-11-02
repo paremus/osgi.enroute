@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>fabric</artifactId>
+        <groupId>com.paremus.example.enroute.microservice</groupId>
+        <version>1.0.2</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>microservice-pkg-app</artifactId>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.osgi.enroute</groupId>
+            <artifactId>osgi-api</artifactId>
+            <type>pom</type>
+        </dependency>
+        <dependency>
+            <groupId>org.osgi.enroute</groupId>
+            <artifactId>enterprise-api</artifactId>
+            <type>pom</type>
+        </dependency>
+        <!-- provided using -conditionalpackage -->
+        <dependency>
+            <groupId>org.bndtools</groupId>
+            <artifactId>org.bndtools.service</artifactId>
+            <scope>provided</scope>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <!-- Expected to inherit configuration from a parent enRoute
+                pom. This includes -contract definitions and maven-jar-plugin setup -->
+            <plugin>
+                <groupId>biz.aQute.bnd</groupId>
+                <artifactId>bnd-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>

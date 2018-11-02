@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<system xmlns="http://schema.paremus.com/sf/1.2"
+        version="1.0.0"
+        name="microservice-pkg-demo"
+        boundary="fabric"
+        repopath="">
+    <description>Enroute Microservice Example (Pkg)</description>
+
+    <admin group="demo"/>
+
+    <system.part name="microservice-app">
+        <launch.properties>
+            <!-- prevent Jetty from binding a port until its config is loaded -->
+            <property name="org.osgi.service.http.port" value="-1"/>
+
+            <!-- infinite log with debug enabled -->
+            <property name="org.apache.felix.log.maxSize" value="-1"/>
+            <property name="org.apache.felix.log.storeDebug" value="true"/>
+        </launch.properties>
+
+        <config pid="org.apache.felix.http">
+            <property name="org.osgi.service.http.port"
+                      value="${port#any}"/>
+        </config>
+
+        <config pid="org.osgi.enroute.examples.microservice.dao.impl.PersonDaoImpl">
+            <property name="provider.target"
+                      value="(name=microservice.database)"/>
+        </config>
+
+        <config pid="org.osgi.enroute.examples.microservice.dao.impl.AddressDaoImpl">
+            <property name="provider.target"
+                      value="(name=microservice.database)"/>
+        </config>
+
+        <config pid="com.paremus.example.enroute.microservice.ConfigureDatabase">
+            <property name="user" value="enroute"/>
+            <property name=".password" value="enroute"/>
+        </config>
+    </system.part>
+
+    <system.part name="microservice-db">
+        <launch.properties>
+            <!-- Packager needs sun.misc -->
+            <property name="org.osgi.framework.system.packages.extra" value="sun.misc"/>
+        </launch.properties>
+
+        <config pid="com.paremus.example.pkg.postgres.guard">
+            <!-- public postgres port -->
+            <property name="port" value="${port#any}" type="integer"/>
+
+            <!-- create volume mapping from fibre_home/var/pgdata to container postgres data directory -->
+            <property name="dataVolume" value="var/pgdata"/>
+
+            <!-- database creation properties -->
+            <property name="dbname" value="enroute"/>
+            <property name="username" value="enroute"/>
+            <property name="password" value="enroute"/>
+        </config>
+
+    </system.part>
+
+</system>

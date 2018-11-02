@@ -1,0 +1,15 @@
+# microservice-db.bndrun
+#   used to expand system.xml template
+
+index: ../../../../microservice-index/target/index.xml
+-standalone: ${index}
+
+-resolve.effective: active
+-runfw: org.apache.felix.framework
+-runee: JavaSE-1.8
+
+-runrequires: \
+	osgi.identity;filter:='(osgi.identity=com.paremus.example.pkg.postgres.pkg)',\
+	osgi.identity;filter:='(osgi.identity=org.postgresql.jdbc42)'
+
+#

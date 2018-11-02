@@ -1,0 +1,22 @@
+# microservice-app.bndrun
+#   used to expand system.xml template
+
+index: ../../../../microservice-index/target/index.xml
+-standalone: ${index}
+
+-resolve.effective: active
+-runfw: org.apache.felix.framework
+-runee: JavaSE-1.8
+
+-runrequires: \
+	osgi.identity;filter:='(osgi.identity=org.osgi.enroute.examples.microservice.rest-service)',\
+	osgi.identity;filter:='(osgi.identity=org.osgi.enroute.examples.microservice.dao-impl)',\
+	osgi.identity;filter:='(osgi.identity=org.apache.johnzon.core)',\
+	osgi.identity;filter:='(osgi.identity=tx-control-provider-jdbc-xa)',\
+	osgi.identity;filter:='(osgi.identity=tx-control-service-xa)',\
+	osgi.identity;filter:='(osgi.identity=com.paremus.http.publish)',\
+	osgi.identity;filter:='(osgi.identity=com.paremus.example.enroute.microservice.microservice-pkg-app)',\
+	osgi.identity;filter:='(osgi.identity=org.apache.felix.log)',\
+	osgi.identity;filter:='(osgi.identity=org.postgresql.jdbc42)'
+
+#

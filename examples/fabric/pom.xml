@@ -10,13 +10,15 @@
     <groupId>com.paremus.example.enroute.microservice</groupId>
     <artifactId>fabric</artifactId>
     <packaging>pom</packaging>
-    <version>1.0.0</version>
+    <version>1.0.2</version>
 
     <description>Paremus Service Fabric deployment for OSGi enRoute Microservice example</description>
 
     <modules>
         <module>microservice-index</module>
         <module>microservice-jdbc-system</module>
+        <module>microservice-pkg-app</module>
+        <module>microservice-pkg-system</module>
     </modules>
 
     <profiles>
@@ -31,6 +33,8 @@
     <properties>
         <examples.version>0.0.1</examples.version>
         <paremus-system-plugin.version>1.0.4</paremus-system-plugin.version>
+        <packager.version>3.2.12</packager.version>
+        <pkg-postgres.version>1.0.2</pkg-postgres.version>
         <local.index.policy>REQUIRED</local.index.policy>
     </properties>
 

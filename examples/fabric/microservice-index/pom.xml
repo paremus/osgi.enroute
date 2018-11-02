@@ -4,7 +4,7 @@
     <parent>
         <artifactId>fabric</artifactId>
         <groupId>com.paremus.example.enroute.microservice</groupId>
-        <version>1.0.0</version>
+        <version>1.0.2</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
@@ -22,6 +22,12 @@
             <groupId>org.osgi.enroute.examples.microservice</groupId>
             <artifactId>rest-service</artifactId>
             <version>${examples.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.paremus.example.enroute.microservice</groupId>
+            <artifactId>microservice-pkg-app</artifactId>
+            <version>${project.version}</version>
         </dependency>
 
         <!-- Paremus Http Publisher to publish app endpoint -->
@@ -68,6 +74,13 @@
             <groupId>com.h2database</groupId>
             <artifactId>h2</artifactId>
             <version>1.4.196</version>
+            <scope>runtime</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+            <version>42.2.5</version>
             <scope>runtime</scope>
         </dependency>
 
