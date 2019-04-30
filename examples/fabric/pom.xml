@@ -10,7 +10,7 @@
     <groupId>com.paremus.example.enroute.microservice</groupId>
     <artifactId>fabric</artifactId>
     <packaging>pom</packaging>
-    <version>1.0.2</version>
+    <version>1.0.3-SNAPSHOT</version>
 
     <description>Paremus Service Fabric deployment for OSGi enRoute Microservice example</description>
 
@@ -89,7 +89,7 @@
             <dependency>
                 <groupId>com.paremus.tools</groupId>
                 <artifactId>com.paremus.http.publish</artifactId>
-                <version>1.0.6</version>
+                <version>1.0.7-SNAPSHOT</version>
             </dependency>
             <dependency>
                 <groupId>com.paremus.fabric</groupId>

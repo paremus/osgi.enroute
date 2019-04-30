@@ -85,7 +85,12 @@
         <repository>
             <id>OSGi</id>
             <name>OSGi public binaries</name>
+            <!-- eek! Sonatype URL has changed
+                This means that index artifacts deployed to nexus2.paremus.com
+                contain invalid URLs for Sonatype artifacts.
             <url>https://oss.sonatype.org/content/groups/osgi</url>
+            -->
+            <url>https://oss.sonatype.org/service/local/repositories/osgi-releases/content</url>
             <releases>
                 <enabled>true</enabled>
             </releases>
